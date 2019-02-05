@@ -1,0 +1,10 @@
+{
+	"aggs":
+	{
+		"nbr_restaurants_quartier":
+		{
+			"terms": {"field": "borough.raw"}
+		}
+	},
+	"size" : 0
+}

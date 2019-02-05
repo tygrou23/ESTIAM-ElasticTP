@@ -1,0 +1,46 @@
+{
+	"query":
+	{
+		"bool":
+		{
+			"must":
+			[
+				{ 
+					"match":
+					{
+						"cuisine": "pizza"
+					}
+				},
+				{
+				"match":
+					{
+						"borough": "manhattan"
+					}
+				}
+			]
+		}
+	},
+	"aggs":
+	{
+		"meilleur_restaurants_italian":
+		{
+			"terms":
+			{
+				"field": "name.raw",
+				"order": { "moy_notes": "desc"},
+				"size": 1
+			},
+			"aggs":
+			{
+				"moy_notes":
+				{
+					"avg":
+					{
+						"field": "grades.score"
+					}
+				}
+			}
+		}
+	},
+	"size": 0
+}

@@ -1,0 +1,30 @@
+{
+	"query": 
+	{
+		"bool":
+		{
+			"must": [
+			{
+				"term": { "cuisine": "pizza"}
+			}
+			],
+			"filter":
+			{
+				"geo_polygon": 
+				{
+					"address.coord":
+					{
+						"points":
+						[
+							{"lon": -73.985725, "lat": 40.767932},
+							{"lon": -73.997225, "lat": 40.751958},
+							{"lon": -73.970016, "lat": 40.761295}
+						]
+						
+					}
+				}
+			}
+			
+		}
+	}
+}

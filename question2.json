@@ -1,0 +1,12 @@
+{
+	"query" :
+	{
+		"bool":
+		{
+			"must":
+			{
+				"match": {"address.street": "8 Avenue"}
+			}
+		}
+	}
+}

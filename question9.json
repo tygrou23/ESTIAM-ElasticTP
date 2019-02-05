@@ -1,0 +1,48 @@
+{
+	"query":
+	{
+		"bool":
+		{
+			"must":
+			[
+				{
+					"match": {"borough": "manhattan"}
+				}	
+			]
+		}
+	},
+	"aggs":
+	{
+		"meilleur_restaurants_type_cuisine":
+		{
+			"terms":
+			{
+				"field": "cuisine"
+			},
+			
+			"aggs":
+			{
+				"restaurants_moyenne":
+				{
+					"terms":
+					{
+							"field": "name.raw",
+							"order" : { "moy_notes": "desc"},
+							"size":1
+					},
+					"aggs":
+					{
+						"moy_notes":
+						{
+							"avg":
+							{
+								"field": "grades.score"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"size": 0
+}
